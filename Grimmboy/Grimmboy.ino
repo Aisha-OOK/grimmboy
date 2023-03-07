@@ -13,6 +13,7 @@
 #include <DFPlayerMini_Fast.h>  // From https://github.com/PowerBroker2/DFPlayerMini_Fast
 #include <Button.h>             // From https://github.com/madleech/Button
 #include <FireTimer.h>          // From https://github.com/PowerBroker2/FireTimer
+#include <Servo.h>		// Servo
 
 #define RXPIN     2             // DFPlayer RX
 #define TXPIN     3             // DFPlayer TX
@@ -127,4 +128,25 @@ void loop() {
   }
 
   readCard();
+}
+
+//Servo to open flower
+Servo myservo;
+int pos = 0;
+int switch_pin = 5;
+void setup() {
+  pinMode(switch_pin, INPUT_PULLUP);
+  myservo.attach(8);
+}
+void loop() {
+  if(digitalRead(switch_pin) == HIGH) {
+  myservo.write(0);
+  delay(15);
+  
+}
+  if(digitalRead(switch_pin) == LOW) {
+  myservo.write(90);
+  delay(15);
+  
+}
 }
